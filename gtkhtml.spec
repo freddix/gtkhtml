@@ -1,11 +1,11 @@
 Summary:	Gtkhtml library
 Name:		gtkhtml
-Version:	4.6.6
+Version:	4.8.0
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gtkhtml/4.6/%{name}-%{version}.tar.xz
-# Source0-md5:	b0b09c3f03707e0284a3b27db30f1143
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gtkhtml/4.8/%{name}-%{version}.tar.xz
+# Source0-md5:	9fe1ea159982ec58e79ac18eb2072124
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	enchant-devel
@@ -36,14 +36,14 @@ Header files etc. neccessary to develop gtkhtml applications.
 %setup -q
 
 # kill gnome common deps
-sed -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
+%{__sed} -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
     -i -e 's/GNOME_MAINTAINER_MODE_DEFINES//g'	\
     -i -e 's/GNOME_COMMON_INIT//g'		\
     -i -e 's/GNOME_CXX_WARNINGS.*//g'		\
     -i -e 's/GNOME_DEBUG_CHECK//g' configure.ac
 
-# strange people living on this planet
-sed -i -e 's|PKG_CHECK_MODULES(GIT.*||g' configure.ac
+# strange people living on this planet (include me)
+%{__sed} -i -e 's|PKG_CHECK_MODULES(GIT.*||g' configure.ac
 
 %build
 %{__intltoolize}
@@ -64,7 +64,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install	\
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,en@shaw}
+%{__rm} -rf $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,en@shaw}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang %{name} --all-name
 
