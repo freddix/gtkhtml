@@ -1,11 +1,11 @@
 Summary:	Gtkhtml library
 Name:		gtkhtml
-Version:	4.8.0
+Version:	4.8.1
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gtkhtml/4.8/%{name}-%{version}.tar.xz
-# Source0-md5:	9fe1ea159982ec58e79ac18eb2072124
+# Source0-md5:	e4cef7db38a17bc576963814cd2153d3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	enchant-devel
